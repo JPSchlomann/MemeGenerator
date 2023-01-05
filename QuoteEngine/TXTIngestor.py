@@ -1,7 +1,7 @@
 
 
 from .IngestorInterface import IngestorInterface
-from .QuoteModel import Quote
+from .QuoteModel import QuoteModel
 
 class TXTIngestor(IngestorInterface):
     compatible_files = ['txt']

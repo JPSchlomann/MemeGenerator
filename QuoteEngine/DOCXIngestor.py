@@ -2,7 +2,7 @@ from typing import List
 import docx
 
 from .IngestorInterface import IngestorInterface
-from .QuoteModel import Quote
+from .QuoteModel import QuoteModel
 
 class DOCXIngestor(IngestorInterface):
     compatible_files = ['docx']

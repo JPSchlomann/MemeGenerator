@@ -1,5 +1,5 @@
 from .IngestorInterface import IngestorInterface
-from .QuoteModel import Quote
+from .QuoteModel import QuoteModel
 from .TXTIngestor import TXTIngestor
 from .CSVIngestor import CSVIngestor
 from .DOCXIngestor import DOCXIngestor

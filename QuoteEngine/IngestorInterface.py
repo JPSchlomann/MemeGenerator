@@ -1,7 +1,7 @@
 """Abstract base class."""
 from abc import ABC, abstractmethod
 
-from .QuoteModel import Quote
+from .QuoteModel import QuoteModel
 
 
 class IngestorInterface(ABC):
@@ -14,5 +14,5 @@ class IngestorInterface(ABC):
 
     @classmethod
     @abstractmethod
-    def parse(cls, path: str) -> [Quote]:
+    def parse(cls, path: str) -> [QuoteModel]:
         pass
