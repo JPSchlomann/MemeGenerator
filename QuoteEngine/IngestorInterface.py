@@ -1,7 +1,7 @@
 """Abstract base class."""
 from abc import ABC, abstractmethod
 
-from QuoteMode import Quote
+from .QuoteModel import Quote
 
 
 class IngestorInterface(ABC):
@@ -10,9 +10,9 @@ class IngestorInterface(ABC):
     @classmethod
     def can_ingest(cls, path: str):
         ext = path.split('.')[-1]
-        return ext in cls.allowed_extensions
+        return ext in cls.compatible_files
 
     @classmethod
     @abstractmethod
-    def parse(cls, path: str):
+    def parse(cls, path: str) -> [Quote]:
         pass

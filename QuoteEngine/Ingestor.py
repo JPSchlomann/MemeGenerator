@@ -1,8 +1,11 @@
-
-from .TextIngestor import TextIngestor
+from .IngestorInterface import IngestorInterface
+from .QuoteModel import Quote
+from .TXTIngestor import TXTIngestor
+from .CSVIngestor import CSVIngestor
+from .DOCXIngestor import DOCXIngestor
 
 class Ingestor(IngestorInterface):
-    ingestors = [TextIngestor]
+    ingestors = [TXTIngestor, CSVIngestor, DOCXIngestor]
 
     @classmethod
     def parse(cls, path):
