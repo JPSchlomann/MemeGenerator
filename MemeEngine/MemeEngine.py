@@ -21,7 +21,13 @@ class MemeEngine():
         message = f' {text} -- {author}'
         draw = ImageDraw.Draw(pic)
         font = ImageFont.truetype('./MemeEngine/fonts/LilitaOne-Regular.ttf', size=20)
-        draw.text((random.randint(1, height), random.randint(1, width-len(message))), message, font=font, fill='white')
+
+        text_pos_x, text_pos_y = [random.randint(1, pic.size[1]-1) ,random.randint(1, pic.size[0])]
+
+        #draw.text((random.randint(1, height), random.randint(1, width-len(message))), message, font=font, fill='white')
+        draw.text((text_pos_x, text_pos_x), message, font=font, fill='white')
+
+
 
         outpic_name = img_path.split('.')[-2].split('/')[-1] + '_meme.'
         out_path = self.output_dir + '/' + outpic_name + img_path.split('.')[-1]

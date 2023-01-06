@@ -3,9 +3,10 @@ from .QuoteModel import QuoteModel
 from .TXTIngestor import TXTIngestor
 from .CSVIngestor import CSVIngestor
 from .DOCXIngestor import DOCXIngestor
+from .PDFIngestor import PDFIngestor
 
 class Ingestor(IngestorInterface):
-    ingestors = [TXTIngestor, CSVIngestor, DOCXIngestor]
+    ingestors = [TXTIngestor, CSVIngestor, DOCXIngestor, PDFIngestor]
 
     @classmethod
     def parse(cls, path):

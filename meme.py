@@ -2,7 +2,7 @@ import os
 import random
 import argparse
 
-from QuoteEngine import CSVIngestor, DOCXIngestor, TXTIngestor, QuoteModel
+from QuoteEngine import CSVIngestor, DOCXIngestor, TXTIngestor, QuoteModel, Ingestor
 from MemeEngine import MemeEngine
 
 
@@ -19,7 +19,8 @@ def generate_meme(path=None, body=None, author=None):
 
         img = random.choice(imgs)
     else:
-        img = path # original: img = path[0]
+        img = path
+        print(path)
 
 
     if body is None:
@@ -43,12 +44,10 @@ def generate_meme(path=None, body=None, author=None):
 
 
 if __name__ == "__main__":
-    body_dflt = 'blablabl'
-    author_dflt = 'Goethe'
     parser = argparse.ArgumentParser(description = 'Provide path, body and author.')
     parser.add_argument('--path', type=str, default = None, help = 'path to picture')
-    parser.add_argument('--body', type=str, default = body_dflt, help = 'body')
-    parser.add_argument('--author', type=str, default = author_dflt, help = 'author')
+    parser.add_argument('--body', type=str, default = None, help = 'body')
+    parser.add_argument('--author', type=str, default = None, help = 'author')
 
     args = parser.parse_args()
     #print('input path: ' + args.path)

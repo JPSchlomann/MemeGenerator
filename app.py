@@ -16,8 +16,8 @@ def setup():
 
     quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
                    './_data/DogQuotes/DogQuotesDOCX.docx',
-                   './_data/DogQuotes/DogQuotesCSV.csv']
-                   #'./_data/DogQuotes/DogQuotesPDF.pdf', !!!!!!!!!!!!!!!!!!!
+                   './_data/DogQuotes/DogQuotesCSV.csv',
+                   './_data/DogQuotes/DogQuotesPDF.pdf']
 
     # TODO: Use the Ingestor class to parse all files in the
     # quote_files variable
@@ -72,9 +72,6 @@ def meme_post():
     #    file and the body and author form paramaters.
     # 3. Remove the temporary saved image.
 
-    quote_body = request.form['body']
-    quote_author = request.form['author']
-
     img_url = request.form['image_url']
     img_content = requests.get(img_url,stream=True).content
     tmp_filename = f'./tmp_{random.randint(0,100)}.png'
@@ -84,12 +81,12 @@ def meme_post():
 
     # Use the meme object to generate a meme using this temp
     # file and the body and author form paramaters.
-    meme.make_meme(tmp_filename, quote_body, quote_author)
+    quote_body = request.form['body']
+    quote_author = request.form['author']
+    path = meme.make_meme(tmp_filename, quote_body, quote_author)
 
     # Remove the temporary saved image.
     os.remove(tmp_filename)
-
-    path = None
 
     return render_template('meme.html', path=path)
 
