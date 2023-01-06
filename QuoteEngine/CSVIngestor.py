@@ -16,7 +16,7 @@ class CSVIngestor(IngestorInterface):
         df = pandas.read_csv(path, header = 0)
 
         for idx, row in df.iterrows():
-            new_quote = Quote(row['body'], row['author'])
+            new_quote = QuoteModel(row['body'], row['author'])
             quotes.append(new_quote)
 
         return quotes

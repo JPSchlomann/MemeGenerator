@@ -15,7 +15,7 @@ class TXTIngestor(IngestorInterface):
         infile = open(path, 'r')
         for line in infile.readlines():
             body, author = line.split(' - ')
-            new_quote = Quote(body, author)
+            new_quote = QuoteModel(body, author)
             quotes.append(new_quote)
 
         return quotes
