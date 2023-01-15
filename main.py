@@ -19,9 +19,10 @@ def generate_meme(path=None, body=None, author=None):
 
         img = random.choice(imgs)
     else:
-        img = path
-        print(path)
-
+        if not os.path.isfile(path):
+            raise Exception("Requested file cannot be found. \n Please provide complete path using single quotes")
+        else:
+            img = path
 
     if body is None:
         quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
@@ -39,7 +40,9 @@ def generate_meme(path=None, body=None, author=None):
         quote = QuoteModel(body, author)
 
     meme = MemeEngine('./static')
+
     path = meme.make_meme(img, quote.body, quote.author)
+
     return path
 
 
@@ -50,6 +53,4 @@ if __name__ == "__main__":
     parser.add_argument('--author', type=str, default = None, help = 'author')
 
     args = parser.parse_args()
-    #print('input path: ' + args.path)
-    print(generate_meme(args.path, args.body, args.author))
-    #generate_meme(args.path, args.body, args.author)
+    print('\n Path of generated meme: ' + generate_meme(args.path, args.body, args.author))

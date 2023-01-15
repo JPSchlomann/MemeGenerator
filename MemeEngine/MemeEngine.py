@@ -8,8 +8,13 @@ class MemeEngine():
     def __init__(self, output_dir):
         self.output_dir = output_dir
 
+        # create folder for generated memes
+        if not os.path.exists(self.output_dir):
+            os.mkdir(self.output_dir)
+
 
     def make_meme(self, img_path, text, author, width=500) -> str:
+
         pic = Image.open(img_path, mode='r', formats=None)
 
         if width > 500:
@@ -17,19 +22,30 @@ class MemeEngine():
         ratio = width/float(pic.size[0])
         height = int(ratio*float(pic.size[1]))
         pic = pic.resize((width, height), Image.NEAREST)
+        pic_width = pic.size[0]
 
-        message = f' {text} -- {author}'
+        message = f' "{text}" - {author}'
         draw = ImageDraw.Draw(pic)
-        font = ImageFont.truetype('./MemeEngine/fonts/LilitaOne-Regular.ttf', size=20)
+        font = ImageFont.truetype('./MemeEngine/fonts/LilitaOne-Regular.ttf',
+                                    size=20)
+        font_width = font.getsize(message)[0]
 
-        text_pos_x, text_pos_y = [random.randint(1, pic.size[1]-1) ,random.randint(1, pic.size[0])]
+        # calculate text position which fits into the size of the pic
+        # assumption: text_width < pic_width
+        text_pos_x_min = 0
+        text_pos_x_max = pic_width - (font_width + 10)
+        text_pos_y_min = font.getsize(message)[1]
+        text_pos_y_max = pic.size[1] - font.getsize(message)[1]
+        text_pos_x, text_pos_y = [random.randint(text_pos_x_min, text_pos_x_max),
+                                random.randint(text_pos_y_min, text_pos_y_max)]
 
-        #draw.text((random.randint(1, height), random.randint(1, width-len(message))), message, font=font, fill='white')
-        draw.text((text_pos_x, text_pos_x), message, font=font, fill='white')
+        draw.text((text_pos_x, text_pos_y), message, font=font, fill='white')
 
+        if '/' in img_path:
+            outpic_name = img_path.split('.')[-2].split('/')[-1] + '_meme.'
+        else:
+            outpic_name = img_path.split('.')[-2].split('\\')[-1] + '_meme.'
 
-
-        outpic_name = img_path.split('.')[-2].split('/')[-1] + '_meme.'
         out_path = self.output_dir + '/' + outpic_name + img_path.split('.')[-1]
         pic.save(out_path)
         return out_path

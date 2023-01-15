@@ -12,7 +12,7 @@ class TXTIngestor(IngestorInterface):
             raise Exception('Cannot load file: Unsupported file type')
 
         quotes = []
-        infile = open(path, 'r')
+        infile = open(path, 'r', encoding='utf-8-sig')
         for line in infile.readlines():
             body, author = line.split(' - ')
             new_quote = QuoteModel(body, author)
