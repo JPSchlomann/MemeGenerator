@@ -1,4 +1,6 @@
-"""The class depends on the python-docx library to complete the
+"""Ingest .docx files.
+
+The class depends on the python-docx library to complete the
 defined, abstract method signatures to parse DOCX files.
 """
 
@@ -8,6 +10,7 @@ import docx
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
 
+
 class DOCXIngestor(IngestorInterface):
     """Ingestor for .docx documents."""
 
@@ -15,7 +18,7 @@ class DOCXIngestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str):
-        """Extracts quotes from .docx documents.
+        """Extract quotes from .docx documents.
 
         : return: Quotes.
         """

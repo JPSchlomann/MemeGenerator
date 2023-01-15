@@ -1,4 +1,4 @@
-"""Main ingestor class. Encapsulation of all ingetors"""
+"""Main ingestor class. Encapsulation of all ingetors."""
 
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
@@ -7,8 +7,11 @@ from .CSVIngestor import CSVIngestor
 from .DOCXIngestor import DOCXIngestor
 from .PDFIngestor import PDFIngestor
 
+
 class Ingestor(IngestorInterface):
-    """Encapsulates all the ingestors to provide one interface
+    """Realize abstract call IngestorInterface.
+
+    Encapsulates all the ingestors to provide one interface
     to load any supported file type.
     """
 
@@ -16,7 +19,7 @@ class Ingestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path):
-        """Usees the correct ingestor fo the provided file type.
+        """Use the correct ingestor fo the provided file type.
 
         : return: Quotes
         """

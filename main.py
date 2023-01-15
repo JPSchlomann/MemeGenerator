@@ -8,16 +8,17 @@ import os
 import random
 import argparse
 
-from QuoteEngine import CSVIngestor, DOCXIngestor, TXTIngestor, QuoteModel, Ingestor
+from QuoteEngine import (CSVIngestor, DOCXIngestor, TXTIngestor,
+                         QuoteModel, Ingestor)
 from MemeEngine import MemeEngine
 
 
 def generate_meme(path=None, body=None, author=None):
-    """ Generate a meme given an path and a quote.
+    """Generate a meme given an path and a quote.
 
     If any argument is not defined,
     a random selection is used
-    
+
     :param path: Path to a picture (.jpg or .png)
     :param body: Text of meme
     :param author: Author of text
@@ -35,7 +36,9 @@ def generate_meme(path=None, body=None, author=None):
         img = random.choice(imgs)
     else:
         if not os.path.isfile(path):
-            raise Exception("Requested file cannot be found. \n Please provide complete path using single quotes")
+            raise Exception("\nRequested file cannot be found. "
+                            "\nPlease provide complete path "
+                            "using single quotes.")
         else:
             img = path
 
@@ -62,10 +65,13 @@ def generate_meme(path=None, body=None, author=None):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description = 'Provide path, body and author.')
-    parser.add_argument('--path', type=str, default = None, help = 'path to picture')
-    parser.add_argument('--body', type=str, default = None, help = 'body')
-    parser.add_argument('--author', type=str, default = None, help = 'author')
+    parser = argparse.ArgumentParser(description='Provide path,'
+                                                 'body and author.')
+    parser.add_argument('--path', type=str, default=None,
+                        help='path to picture')
+    parser.add_argument('--body', type=str, default=None, help='body')
+    parser.add_argument('--author', type=str, default=None, help='author')
 
     args = parser.parse_args()
-    print('\n Path of generated meme: ' + generate_meme(args.path, args.body, args.author))
+    print('\n Path of generated meme: ' + generate_meme(args.path, args.body,
+                                                        args.author))

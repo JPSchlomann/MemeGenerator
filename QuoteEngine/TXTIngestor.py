@@ -1,18 +1,21 @@
-"""The class does not depend on any 3rd party library to complete
+"""Ingest .txt files.
+
+The class does not depend on any 3rd party library to complete
 the defined, abstract method signatures to parse Text files.
 """
 
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
 
+
 class TXTIngestor(IngestorInterface):
     """Ingestor for .txt documents."""
-    
+
     compatible_files = ['txt']
 
     @classmethod
     def parse(cls, path: str):
-        """Extracts quotes from .txt documents.
+        """Extract quotes from .txt documents.
 
         : return: Quotes.
         """

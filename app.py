@@ -14,11 +14,10 @@ meme = MemeEngine('./static')
 
 
 def setup():
-    """ Load all resources.
+    """Load all resources.
 
     :return: quotes and images
     """
-
     quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
                    './_data/DogQuotes/DogQuotesDOCX.docx',
                    './_data/DogQuotes/DogQuotesCSV.csv',
@@ -41,13 +40,14 @@ def setup():
 
     return quotes, imgs
 
+
 # call setup
 quotes, imgs = setup()
 
 
 @app.route('/')
 def meme_rand():
-    """ Generate a random meme """
+    """Generate a random meme."""
     # Select a random image from imgs array
     img = imgs[random.randint(0, len(imgs)-1)]
     # Select a random quote from the quotes array
@@ -58,24 +58,24 @@ def meme_rand():
 
 @app.route('/create', methods=['GET'])
 def meme_form():
-    """ User input for meme information """
+    """User input for meme information."""
     return render_template('meme_form.html')
 
 
 @app.route('/create', methods=['POST'])
 def meme_post():
-    """ Create a user defined meme.
+    """Create a user defined meme.
 
     :return: calling render_template
     """
     # Save the image from the image_url
     # to a temp local file.
     img_url = request.form['image_url']
-    img_content = requests.get(img_url,stream=True).content
+    img_content = requests.get(img_url, stream=True).content
     tmp_filename = f'./tmp_{random.randint(0,100)}.png'
 
     with open(tmp_filename, 'wb') as img:
-       img.write(img_content)
+        img.write(img_content)
 
     # Generate a meme using the temp file and the body
     # and author form paramaters.

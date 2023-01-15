@@ -6,27 +6,30 @@ import os
 
 
 class MemeEngine():
-    """The MemeEngine has three main purposes:
+    """The MemeEngine has three main purposes.
+
     Loading an image, transforming the image,
-    adding captioin to the image
+    adding caption to the image
     """
 
     def __init__(self, output_dir):
+        """Create a new meme.
+
+        :param output_dir: path to created meme
+        """
         self.output_dir = output_dir
 
         # create folder for generated memes
         if not os.path.exists(self.output_dir):
             os.mkdir(self.output_dir)
 
-
     def make_meme(self, img_path, text, author, width=500) -> str:
-        """Creating a meme by loading and transforming an image +
-        adding a caption
+        """Create a meme by loading, transforming an image and add a caption.
 
         :param img_path: Path to image
         :param text: Text for meme
         :param author: Author of text
-        :param width: target width of picture 
+        :param width: target width of picture
         """
         pic = Image.open(img_path, mode='r', formats=None)
 
@@ -40,7 +43,7 @@ class MemeEngine():
         message = f' "{text}" - {author}'
         draw = ImageDraw.Draw(pic)
         font = ImageFont.truetype('./MemeEngine/fonts/LilitaOne-Regular.ttf',
-                                    size=20)
+                                  size=20)
         font_width = font.getsize(message)[0]
 
         # calculate text position which fits into the size of the pic
@@ -49,8 +52,10 @@ class MemeEngine():
         text_pos_x_max = pic_width - (font_width + 10)
         text_pos_y_min = font.getsize(message)[1]
         text_pos_y_max = pic.size[1] - font.getsize(message)[1]
-        text_pos_x, text_pos_y = [random.randint(text_pos_x_min, text_pos_x_max),
-                                random.randint(text_pos_y_min, text_pos_y_max)]
+        text_pos_x, text_pos_y = [random.randint(text_pos_x_min,
+                                                 text_pos_x_max),
+                                  random.randint(text_pos_y_min,
+                                                 text_pos_y_max)]
 
         draw.text((text_pos_x, text_pos_y), message, font=font, fill='white')
 
@@ -59,6 +64,6 @@ class MemeEngine():
         else:
             outpic_name = img_path.split('.')[-2].split('\\')[-1] + '_meme.'
 
-        out_path = self.output_dir + '/' + outpic_name + img_path.split('.')[-1]
+        out_path = self.output_dir+'/'+outpic_name+img_path.split('.')[-1]
         pic.save(out_path)
         return out_path
