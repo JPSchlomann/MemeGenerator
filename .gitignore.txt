@@ -2,3 +2,4 @@
 venv
 QuoteEngine/__pycache__
 *.pyc
+Test_*
