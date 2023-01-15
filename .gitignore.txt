@@ -3,3 +3,16 @@ venv
 QuoteEngine/__pycache__
 *.pyc
 Test_*
+static/
+MemeEngine/Test_Playground.py
+MemeEngine/Test_os.py
+MemeEngine/__pycache__
+QuoteEngine/Test_PDFIngestor.py
+QuoteEngine/Test_TextIngestor.py
+QuoteEngine/Test_replace.py
+QuoteEngine/__pycache__
+Test_app_quote_files.py
+Test_os_library.py
+Test_request.py
+Test_run_QuoteEngine.py
+__pycache__/
