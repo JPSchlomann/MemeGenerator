@@ -1,9 +1,15 @@
+"""The MemeEngine generates a meme."""
+
 from PIL import Image, ImageDraw, ImageFont
 import random
 import os
 
 
 class MemeEngine():
+    """The MemeEngine has three main purposes:
+    Loading an image, transforming the image,
+    adding captioin to the image
+    """
 
     def __init__(self, output_dir):
         self.output_dir = output_dir
@@ -14,7 +20,14 @@ class MemeEngine():
 
 
     def make_meme(self, img_path, text, author, width=500) -> str:
+        """Creating a meme by loading and transforming an image +
+        adding a caption
 
+        :param img_path: Path to image
+        :param text: Text for meme
+        :param author: Author of text
+        :param width: target width of picture 
+        """
         pic = Image.open(img_path, mode='r', formats=None)
 
         if width > 500:

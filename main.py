@@ -1,3 +1,9 @@
+"""Generate a random captioned image.
+
+The 'generate_meme' function is used to generate a meme
+based on user iputs or based on random parameters
+"""
+
 import os
 import random
 import argparse
@@ -7,7 +13,16 @@ from MemeEngine import MemeEngine
 
 
 def generate_meme(path=None, body=None, author=None):
-    """ Generate a meme given an path and a quote """
+    """ Generate a meme given an path and a quote.
+
+    If any argument is not defined,
+    a random selection is used
+    
+    :param path: Path to a picture (.jpg or .png)
+    :param body: Text of meme
+    :param author: Author of text
+    :return: The path to the generated meme
+    """
     img = None
     quote = None
 

@@ -1,3 +1,8 @@
+"""The PDFIngestor class utilizes the subprocess module to call the
+pdftotext CLI utility—creating a pipeline that converts PDFs to
+text and then ingests the text.
+"""
+
 from typing import List
 import subprocess
 import os
@@ -7,10 +12,16 @@ from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
 
 class PDFIngestor(IngestorInterface):
+    """Ingestor for .pdf documents."""
+    
     compatible_files = ['pdf']
 
     @classmethod
     def parse(cls, path: str):
+        """Extracts quotes from .pdf documents.
+
+        : return: Quotes.
+        """
         if not cls.can_ingest(path):
             raise Exception('Cannot load file: Unsupported file type')
 
