@@ -31,7 +31,7 @@ def setup():
         quotes.extend(new_quotes)
 
     images_path = "./_data/photos/dog/"
-    # Find allvimages within the images_path directory
+    # Find all images within the images_path directory
     img_names = os.listdir(images_path)
     imgs = []
     for img_name in img_names:
@@ -68,8 +68,7 @@ def meme_post():
 
     :return: calling render_template
     """
-    # Save the image from the image_url
-    # to a temp local file.
+    # Save the image from the image_url to a temp local file.
     img_url = request.form['image_url']
     img_content = requests.get(img_url, stream=True).content
     tmp_filename = f'./tmp_{random.randint(0,100)}.png'

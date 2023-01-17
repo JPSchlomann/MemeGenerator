@@ -50,7 +50,7 @@ The absract class 'IngestorInterface' provides the blueprint for each ingestor. 
 
 ### MemeEngine
 This module is used to generate a meme using the quotes from the QuoteEngine. An image is loaded, transformed and a caption is added.
-After this, the generated meme is saved.
+After this, the generated meme is saved. Inside './MemeEngine/fonts' the relevant data for the font of the text is stored.
 
 ### Dependencies
 Both the CLI (main.py) and the Flask server (app.py) are using the QuoteEngine and the MemeEngine.

@@ -9,22 +9,22 @@ class MemeEngine():
     """The MemeEngine has three main purposes.
 
     Loading an image, transforming the image,
-    adding caption to the image
+    adding a caption to the image
     """
 
     def __init__(self, output_dir):
         """Create a new meme.
 
-        :param output_dir: path to created meme
+        :param output_dir: path to created / saved meme
         """
         self.output_dir = output_dir
 
-        # create folder for generated memes
+        # create a folder for generated memes
         if not os.path.exists(self.output_dir):
             os.mkdir(self.output_dir)
 
     def make_meme(self, img_path, text, author, width=500) -> str:
-        """Create a meme by loading, transforming an image and add a caption.
+        """Create a meme by loading + transforming an image and add a caption.
 
         :param img_path: Path to image
         :param text: Text for meme
@@ -33,6 +33,7 @@ class MemeEngine():
         """
         pic = Image.open(img_path, mode='r', formats=None)
 
+        # max-wigth sould be 500
         if width > 500:
             width = 500
         ratio = width/float(pic.size[0])
@@ -48,6 +49,7 @@ class MemeEngine():
 
         # calculate text position which fits into the size of the pic
         # assumption: text_width < pic_width
+        # hard coded offsets for not drawing on the edge 
         text_pos_x_min = 0
         text_pos_x_max = pic_width - (font_width + 10)
         text_pos_y_min = font.getsize(message)[1]
