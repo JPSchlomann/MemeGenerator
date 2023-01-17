@@ -49,7 +49,7 @@ class MemeEngine():
 
         # calculate text position which fits into the size of the pic
         # assumption: text_width < pic_width
-        # hard coded offsets for not drawing on the edge 
+        # hard coded offsets for not drawing on the edge
         text_pos_x_min = 0
         text_pos_x_max = pic_width - (font_width + 10)
         text_pos_y_min = font.getsize(message)[1]
